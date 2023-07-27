@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vloth <vloth@student.42.fr>                +#+  +:+       +#+         #
+#    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/07/25 18:16:50 by vloth            ###   ########.fr        #
+#    Updated: 2023/07/27 17:42:14 by alilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DIR_SRCS 	= ./srcs
 DIR_OBJ 	= obj
 
 PATH_LIBFT = ./libft
-PATH_MLX = ./minilibx-linux/
+PATH_MLX = ./minilibx-linux
 DIR_INC += -I $(PATH_LIBFT)
 
 OBJS        := $(addprefix ${DIR_OBJ}/, ${SRCS:.c=.o})
