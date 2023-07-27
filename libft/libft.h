@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:53:54 by alilin            #+#    #+#             */
-/*   Updated: 2022/11/08 14:43:01 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:35:53 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdbool.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -43,10 +44,10 @@ char			*ft_strdup(const char *s1);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlen(const char *str);
-int 			ft_tablen(char **tab);
-char 			**ft_setopt(int nboptions, ...);
+int				ft_tablen(char **tab);
+char			**ft_setopt(int nboptions, ...);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			*ft_strnstr(const char *haystack, const char *needle,
+char			*ft_strnstr(const char *haystack, const char *needle, \
 		size_t len);
 char			*ft_strrchr(const char *s, int c);
 int				ft_tolower(int c);
@@ -69,6 +70,7 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 		void (*del)(void *));
+bool			ft_strsrchend(char *str, char *searched);
 #endif

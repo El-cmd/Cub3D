@@ -6,14 +6,14 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 15:41:53 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/28 15:41:59 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:20:05 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int			ft_start_nbset(char const *s1, char const *set)
+static int	ft_start_nbset(char const *s1, char const *set)
 {
 	int		i;
 	int		j;
@@ -33,7 +33,7 @@ static int			ft_start_nbset(char const *s1, char const *set)
 	return (nbset);
 }
 
-static int			ft_end_nbset(char const *s1, char const *set)
+static int	ft_end_nbset(char const *s1, char const *set)
 {
 	int		i;
 	int		j;
@@ -54,7 +54,7 @@ static int			ft_end_nbset(char const *s1, char const *set)
 	return (nbset);
 }
 
-char				*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		size;
 	int		start;
@@ -69,7 +69,8 @@ char				*ft_strtrim(char const *s1, char const *set)
 		return (str = (char *)ft_calloc(1, sizeof(char)));
 	end = ft_end_nbset(s1, set);
 	size = ft_strlen(s1) - (start + end);
-	if (!(str = (char *)malloc((sizeof(char) * (size + 1)))))
+	str = (char *)malloc((sizeof(char) * (size + 1)));
+	if (!str)
 		return (0);
 	i = 0;
 	while ((unsigned long)start < (ft_strlen(s1) - end))

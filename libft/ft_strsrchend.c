@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strsrchend.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 17:52:30 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 17:16:16 by alilin           ###   ########.fr       */
+/*   Created: 2023/07/27 16:15:39 by alilin            #+#    #+#             */
+/*   Updated: 2023/07/27 17:36:22 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+bool	ft_strsrchend(char *str, char *searched)
 {
-	char			*str;
-	unsigned int	i;
+	size_t	i;
+	int		j;
 
-	i = 0;
-	if (!s || !f)
-		return (0);
-	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!str)
-		return (0);
-	while (s[i])
+	if (ft_strlen(searched) < ft_strlen(str))
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		i = ft_strlen(str) - ft_strlen(searched);
+		j = 0;
+		while (i < ft_strlen(str))
+		{
+			if (str[i] != searched[j])
+				return (false);
+			i++;
+		}
+		return (true);
 	}
-	str[i] = '\0';
-	return (str);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:53:29 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/29 12:47:00 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 16:51:38 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	char	*c;
 
-	if (!(c = malloc(size * count)))
+	c = malloc(size * count);
+	if (!c)
 		return (0);
 	ft_bzero(c, count * size);
 	return (c);

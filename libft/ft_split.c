@@ -6,14 +6,14 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:59:33 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/28 13:53:59 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:12:09 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int		ft_countset(char const *s, char c)
+static int	ft_countset(char const *s, char c)
 {
 	int		i;
 	int		count;
@@ -38,7 +38,7 @@ static int		ft_countset(char const *s, char c)
 	return (count);
 }
 
-static char		*ft_mallocstr(char const *s, char c)
+static char	*ft_mallocstr(char const *s, char c)
 {
 	int		i;
 	int		size;
@@ -47,7 +47,8 @@ static char		*ft_mallocstr(char const *s, char c)
 	size = 0;
 	while (s[size] && s[size] != c)
 		size++;
-	if (!(str = (char *)malloc(sizeof(char*) * (size + 1))))
+	str = (char *)malloc(sizeof(char *) * (size + 1));
+	if (!str)
 		return (0);
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -59,7 +60,7 @@ static char		*ft_mallocstr(char const *s, char c)
 	return (str);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		j;
@@ -69,7 +70,8 @@ char			**ft_split(char const *s, char c)
 	j = 0;
 	if (!s)
 		return (NULL);
-	if (!(tab = (char **)malloc(sizeof(char *) * (ft_countset(s, c) + 1))))
+	tab = (char **)malloc(sizeof(char *) * (ft_countset(s, c) + 1));
+	if (!tab)
 		return (0);
 	while (s[i])
 	{

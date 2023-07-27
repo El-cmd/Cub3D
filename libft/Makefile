@@ -5,17 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/07 13:56:40 by alilin            #+#    #+#              #
-#    Updated: 2023/07/25 17:34:37 by alilin           ###   ########.fr        #
+#    Created: 2023/07/27 16:49:44 by alilin            #+#    #+#              #
+#    Updated: 2023/07/27 17:35:11 by alilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 	libft.a
-CC 		= 	clang
-FLAGS	= 	-Wall -Wextra -Werror
-RM		= 	rm -rf
+NAME	=	libft.a
+CC		=	clang
+FLAGS	=	-Wall -Wextra -Werror
+RM		=	rm -rf
 
-SRCS 	:=	ft_bzero.c \
+SRCS	:=	ft_bzero.c \
 			ft_atoi.c \
 			ft_calloc.c \
 			ft_isalpha.c \
@@ -60,11 +60,12 @@ SRCS 	:=	ft_bzero.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
 			ft_lstmap.c \
+			ft_strsrchend.c \
 
-DIR_OBJ = obj
-OBJS 	= $(addprefix $(DIR_OBJ)/, $(SRCS:.c=.o))
+DIR_OBJ	= obj
+OBJS	= $(addprefix $(DIR_OBJ)/, $(SRCS:.c=.o))
 
-HEADER 	= -I libft/libft.h
+HEADER	= -I libft/libft.h
 
 all:	$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:47:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/25 17:56:59 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 16:18:18 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include <unistd.h>
 # include <stdio.h>
 
-int main_parse(char *av);
+int	main_parse(char *av);
 
 #endif

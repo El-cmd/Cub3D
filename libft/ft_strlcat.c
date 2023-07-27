@@ -6,14 +6,14 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 14:56:39 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/16 14:18:07 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:14:29 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "libft.h"
 
-static char		ft_strncat(char *dst, char *src, size_t nb)
+static char	ft_strncat(char *dst, char *src, size_t nb)
 {
 	size_t	i;
 	size_t	j;
@@ -31,7 +31,7 @@ static char		ft_strncat(char *dst, char *src, size_t nb)
 	return (*dst);
 }
 
-size_t			ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	len_dst;
 	size_t	len_src;

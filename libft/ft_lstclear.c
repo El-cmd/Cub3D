@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 17:02:19 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/23 13:59:16 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 16:57:10 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	t_list	*tmp;
 
 	if (lst)
+	{
 		while (*lst)
 		{
 			tmp = *lst;
@@ -24,5 +25,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 			*lst = tmp;
 			*lst = (*lst)->next;
 		}
+	}
 	*lst = NULL;
 }

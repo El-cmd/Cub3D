@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 18:17:09 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/24 17:27:23 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 16:58:14 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	start = NULL;
 	while (lst)
 	{
-		if (!(lstnew = ft_lstnew((*f)(lst->content))))
+		lstnew = ft_lstnew((*f)(lst->content));
+		if (!lstnew)
 		{
 			ft_lstclear(&start, (*del));
 			return (0);

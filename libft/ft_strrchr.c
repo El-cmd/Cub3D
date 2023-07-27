@@ -6,7 +6,7 @@
 /*   By: alilin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:28:16 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/09 15:44:11 by alilin           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:18:51 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int l;
-	int i;
+	int	l;
+	int	i;
 
 	l = ft_strlen(s) - 1;
 	i = ft_strlen(s);
