@@ -6,7 +6,7 @@
 /*   By: vloth <vloth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 17:19:26 by vloth             #+#    #+#             */
-/*   Updated: 2023/07/27 17:47:07 by vloth            ###   ########.fr       */
+/*   Updated: 2023/07/27 19:21:46 by vloth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	key_funct(int code, t_mlx *data)
 {
-	(void) data;
 	if (code == ESC)
-		mlx_loop_end (data->mlx);
+		mlx_loop_end(data->mlx);
 	return (0);
 }
