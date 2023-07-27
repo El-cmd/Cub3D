@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
+#    By: vloth <vloth@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/07/27 17:42:14 by alilin           ###   ########.fr        #
+#    Updated: 2023/07/27 19:15:46 by vloth            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ DIR_INC = -I ./includes/
 
 SRCS 	:= 	cub3D.c \
 			parse.c \
+			key_funct.c \
+			hakai.c
 
 DIR_SRCS 	= ./srcs
 
