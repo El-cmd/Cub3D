@@ -6,7 +6,7 @@
 /*   By: vloth <vloth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:47:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 19:10:03 by vloth            ###   ########.fr       */
+/*   Updated: 2023/10/19 15:16:40 by vloth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 #define ESC 65307
 #define LEFT 97
@@ -34,5 +37,7 @@ typedef struct s_mlx
 int     main_parse(char *av);
 void    hakai(t_mlx *data);
 int     key_funct(int code, t_mlx *data);
+char	**get_next_line(int fd);
+int     read_map(char *av);
 
 #endif

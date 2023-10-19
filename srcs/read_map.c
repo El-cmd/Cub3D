@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vloth <vloth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 11:34:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/19 15:19:24 by vloth            ###   ########.fr       */
+/*   Created: 2023/10/19 14:55:37 by vloth             #+#    #+#             */
+/*   Updated: 2023/10/19 16:03:59 by vloth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../includes/cub3D.h"
 
-size_t	ft_strlen(char *str)
+
+int	read_map(char *av)
 {
-	size_t	i;
+	int	fd;
+    int i = 0;
+    char **map;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	fd = open(av, O_RDONLY);
+    printf("%d\n", fd);
+    map = get_next_line(fd);
+    while (map[i])
+    {
+        printf("%s\n", map[i]);
+        i++;
+    }
+    return 1;
 }

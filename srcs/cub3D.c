@@ -6,7 +6,7 @@
 /*   By: vloth <vloth@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:02 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 19:15:33 by vloth            ###   ########.fr       */
+/*   Updated: 2023/10/19 15:02:07 by vloth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int ac, char **av)
 	//if (main_parse(av[1]) == 1)
 	//	return (1);
 	t_mlx data;
-	(void)**av;
 	(void)ac;
 
+	read_map(av[1]);
 	data.mlx = mlx_init();
 	data.win =  mlx_new_window(data.mlx, 400, 400, "trou de balle");
 	mlx_key_hook(data.win, key_funct, &data);
