@@ -6,31 +6,63 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/23 16:07:20 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/23 17:37:39 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main_parse(char *av)
+int check_extension(char *av, char *comp)
+{
+	if (ft_strlen(av) < 4)
+		return (1);
+	else
+	{
+		if (ft_strncmp(&av[ft_strlen(av) - 4], comp, 4) != 0)
+			return (1);
+	}
+	return (0);
+}
+
+int	preliminary_check(char *av)
 {
 	int		fd;
-	int		i;
-	char	**file;
 
 	fd = open(av, O_RDWR);
 	if ((fd == -1) && (errno == EISDIR))
 	{
 		printf("Error first argument is a directory and not a file\n");
-		return (-1);
+		exit(EXIT_FAILURE);
 	}
-	
-	file = get_next_line(fd);
-	i = 0;
-    while (file[i])
-    {
-        printf("%s\n", file[i]);
-        i++;
-    }
+	if (fd == -1)
+	{
+		printf("Error Cannot open file, or file doesn't exist\n");
+		exit(EXIT_FAILURE);
+	}
+	if (check_extension(av, ".cub"))
+	{
+		printf("Error file does not have \".cub\" extention a the end\n");
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
+}
+
+int	main_parse(char *av)
+{
+	int		fd;
+	char	**file;
+
+	fd = preliminary_check(av);
+	if (fd != -1)
+	{
+		file = get_next_line(fd);
+		if (close(fd) != 0)
+		{
+			//free_tab(file);
+			exit(EXIT_FAILURE);
+		}
+	}
+	//start_parse(file);
+	//free_tab(file);
 	return (0);
 }
