@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vloth <vloth@student.42.fr>                +#+  +:+       +#+         #
+#    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/10/19 15:31:34 by vloth            ###   ########.fr        #
+#    Updated: 2023/10/23 16:10:21 by alilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ SRCS 	:= 	cub3D.c \
 			key_funct.c \
 			hakai.c \
 			gnl.c \
-			read_map.c
 
 DIR_SRCS 	= ./srcs
 
