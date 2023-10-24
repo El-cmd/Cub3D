@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:47:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/23 17:21:57 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/24 18:33:12 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int     main_parse(char *av);
 void    hakai(t_mlx *data);
 int     key_funct(int code, t_mlx *data);
 char	**get_next_line(int fd);
+void	free_tab(char **file);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/10/23 16:10:21 by alilin           ###   ########.fr        #
+#    Updated: 2023/10/24 18:36:15 by alilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,10 @@ FLAGS   = -Wall -Wextra -Werror
 DIR_INC = -I ./includes/
 
 SRCS 	:= 	cub3D.c \
-			parse.c \
+			main_parse.c \
 			key_funct.c \
 			hakai.c \
+			utils.c \
 			gnl.c \
 
 DIR_SRCS 	= ./srcs
