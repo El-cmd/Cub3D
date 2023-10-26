@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/24 18:30:38 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/26 15:55:22 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	preliminary_check(char *av)
 	return (fd);
 }
 
-int	main_parse(char *av)
+int	main_parse(char *av, t_parse *parsing)
 {
 	int		fd;
 	char 	**file;
@@ -61,7 +61,7 @@ int	main_parse(char *av)
 			free_tab(file);
 			exit(EXIT_FAILURE);
 		}
-		// start_parse(file);
+		start_parse(file, parsing);
 		free_tab(file);
 	}
 	return (0);

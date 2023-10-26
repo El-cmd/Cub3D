@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:02 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/23 17:35:28 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/26 15:54:07 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int	main(int ac, char **av)
 {
 	t_mlx 	data;
-	// t_parse parsing;
+	t_parse parsing;
 	
 	if (ac != 2)
 	{
 		printf("Error wrong number of arguments\n");
 		exit(EXIT_FAILURE);
 	}
-	if (main_parse(av[1]) == -1)
+	if (main_parse(av[1], &parsing) == -1)
 		return (1);
 
 	data.mlx = mlx_init();

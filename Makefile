@@ -6,7 +6,7 @@
 #    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/10/24 18:36:15 by alilin           ###   ########.fr        #
+#    Updated: 2023/10/26 15:56:42 by alilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS 	:= 	cub3D.c \
 			hakai.c \
 			utils.c \
 			gnl.c \
+			parse.c \
+			
 
 DIR_SRCS 	= ./srcs
 

@@ -6,7 +6,7 @@
 /*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:47:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/24 18:33:12 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/26 16:02:32 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,18 @@ typedef struct  s_node
 
 typedef struct  s_parse
 {
-    char            *NO;
-    char            *SO;
-    char            *WE;
-    char            *EA;
-    int             F[3];
-    int             C[3];
+    char            *no;
+    char            *so;
+    char            *we;
+    char            *ea;
+    char            pos;
+    int             f[3];
+    int             c[3];
     struct s_node   *map;
 }               t_parse;
 
-int     main_parse(char *av);
+int     main_parse(char *av, t_parse *parsing);
+void    start_parsing(char **file, t_parse *parsing);
 void    hakai(t_mlx *data);
 int     key_funct(int code, t_mlx *data);
 char	**get_next_line(int fd);
