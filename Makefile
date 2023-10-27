@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vloth <vloth@student.42.fr>                +#+  +:+       +#+         #
+#    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/10/19 15:31:34 by vloth            ###   ########.fr        #
+#    Updated: 2023/10/26 15:56:42 by alilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,13 @@ FLAGS   = -Wall -Wextra -Werror
 DIR_INC = -I ./includes/
 
 SRCS 	:= 	cub3D.c \
-			parse.c \
+			main_parse.c \
 			key_funct.c \
 			hakai.c \
+			utils.c \
 			gnl.c \
-			read_map.c
+			parse.c \
+			
 
 DIR_SRCS 	= ./srcs
 

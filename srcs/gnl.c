@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vloth <vloth@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:58:43 by vloth             #+#    #+#             */
-/*   Updated: 2023/10/19 16:07:34 by vloth            ###   ########.fr       */
+/*   Updated: 2023/10/24 18:19:27 by alilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	**get_next_line(int fd)
 	char		buff[BUFFER_SIZE + 1];
 	int			ret;
 	char		*line;
+	char 		**file;
 
 	ret = 1;
 	if (fd > 1024 || fd < 0 || BUFFER_SIZE < 0 || ret < 0)
@@ -79,5 +80,7 @@ char	**get_next_line(int fd)
 		save = ft_strjoingnl(save, buff);
 	}
 	line = ft_strdupgnl(save);
-	return (ft_split(line, '\n'));
+	file = ft_split(line, '\n');
+	free(line);
+	return (file);
 }
