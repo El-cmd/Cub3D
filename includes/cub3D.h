@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:47:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:35:35 by eldoctor         ###   ########.fr       */
+/*   Updated: 2023/11/02 22:46:47 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@
 # include <errno.h>  
 
 # define ESC 65307
-# define LEFT 97
-# define RIGHT 100
-# define UP 119
-# define DOWN 115
+# define LEFT 'q'
+# define RIGHT 'd'
+# define UP 'z'
+# define DOWN 's'
 
 typedef struct s_mlx
 {
     void            *mlx;
     void            *win;
+    char            **map;
 }               t_mlx;
 
 typedef struct  s_node
@@ -53,12 +54,12 @@ typedef struct  s_parse
     struct s_node   *map;
 }               t_parse;
 
-int     main_parse(char *av, t_parse *parsing);
+int     main_parse(char *av, t_parse *parsing, t_mlx *data);
 //void    start_parsing(char **file, t_parse *parsing);
 void    hakai(t_mlx *data);
 int     key_funct(int code, t_mlx *data);
 char	**get_next_line(int fd);
 void	free_tab(char **file);
-
+void	print_map(char **str);
 
 #endif

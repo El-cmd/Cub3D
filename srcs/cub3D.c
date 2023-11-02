@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:02 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/26 15:54:07 by alilin           ###   ########.fr       */
+/*   Updated: 2023/11/02 22:22:25 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		printf("Error wrong number of arguments\n");
 		exit(EXIT_FAILURE);
 	}
-	if (main_parse(av[1], &parsing) == -1)
+	if (main_parse(av[1], &parsing, &data) == -1)
 		return (1);
 
 	data.mlx = mlx_init();

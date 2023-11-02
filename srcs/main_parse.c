@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:34:27 by eldoctor         ###   ########.fr       */
+/*   Updated: 2023/11/02 22:23:04 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	preliminary_check(char *av)
 	return (fd);
 }
 
-int	main_parse(char *av, t_parse *parsing)
+int	main_parse(char *av, t_parse *parsing, t_mlx *data)
 {
 	int		fd;
 	char 	**file;
@@ -62,8 +62,7 @@ int	main_parse(char *av, t_parse *parsing)
 			free_tab(file);
 			exit(EXIT_FAILURE);
 		}
-		//start_pars(file, parsing);
-		free_tab(file);
+		data->map = file;
 	}
 	return (0);
 }
