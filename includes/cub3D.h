@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:47:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/26 16:02:32 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:35:35 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ typedef struct  s_parse
 }               t_parse;
 
 int     main_parse(char *av, t_parse *parsing);
-void    start_parsing(char **file, t_parse *parsing);
+//void    start_parsing(char **file, t_parse *parsing);
 void    hakai(t_mlx *data);
 int     key_funct(int code, t_mlx *data);
 char	**get_next_line(int fd);
 void	free_tab(char **file);
+
 
 #endif

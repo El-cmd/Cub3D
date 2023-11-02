@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:51:45 by alilin            #+#    #+#             */
-/*   Updated: 2023/10/26 15:55:22 by alilin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:34:27 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main_parse(char *av, t_parse *parsing)
 {
 	int		fd;
 	char 	**file;
+	(void)parsing;
 
 	fd = preliminary_check(av);
 	if (fd != -1)
@@ -61,7 +62,7 @@ int	main_parse(char *av, t_parse *parsing)
 			free_tab(file);
 			exit(EXIT_FAILURE);
 		}
-		start_parse(file, parsing);
+		//start_pars(file, parsing);
 		free_tab(file);
 	}
 	return (0);
