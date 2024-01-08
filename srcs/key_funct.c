@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 17:19:26 by vloth             #+#    #+#             */
-/*   Updated: 2023/11/02 23:21:09 by eldoctor         ###   ########.fr       */
+/*   Updated: 2023/12/25 22:11:11 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void move_p(int code, t_mlx *data)
 		if (data->map[y + 1][x] != '1')
 		{
 			data->map[y][x] = '0';
-			data->map[y +1][x] = 'N';
+			data->map[y + 1][x] = 'N';
 		}
 		return ;
 	}
