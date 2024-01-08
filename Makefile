@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alilin <alilin@student.42.fr>              +#+  +:+       +#+         #
+#    By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/10/26 15:56:42 by alilin           ###   ########.fr        #
+#    Updated: 2023/12/23 14:49:21 by eldoctor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ DIR_INC = -I ./includes/
 SRCS 	:= 	cub3D.c \
 			main_parse.c \
 			key_funct.c \
+			square.c \
+			init_image.c \
 			hakai.c \
 			utils.c \
 			gnl.c \
