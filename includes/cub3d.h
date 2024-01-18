@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
-/*   Updated: 2024/01/17 22:54:44 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/18 02:23:42 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ typedef struct s_minimap
 	t_img 	fond_map;
 	t_img	perso_mini;
 	t_img	wall;
-	char minimap[11][11];
+	char minimap[12][12];
 } t_minimap;
 
 typedef struct s_data
