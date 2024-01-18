@@ -6,7 +6,7 @@
 #    By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2024/01/17 22:32:59 by eldoctor         ###   ########.fr        #
+#    Updated: 2024/01/18 12:52:44 by eldoctor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS 	:= 	main.c \
 			check_map.c \
 			check_textures.c \
 			init_mlx.c \
-			minimap.c
+			minimap.c \
+			key_funct.c
 
 DIR_SRCS 	= ./src
 

@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
-/*   Updated: 2024/01/18 02:23:42 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:17:41 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,12 @@ enum e_output
 # define MINI_PERSO 20
 # define MINI_MUR 30
 
+# define ESC 65307
+// AZERTY
+# define LEFT 'q'
+# define RIGHT 'd'
+# define UP 'z'
+# define DOWN 's'
 
 typedef struct s_mapdata
 {
@@ -183,5 +189,13 @@ int		mlx_win_init(t_data *data);
 int 	init_img(t_data *data);
 
 int put_minimap(t_data *data);
+
+void routine(t_data *data);
+
+void do_minimap(t_data *data);
+
+void do_tab_minimap(t_data *data);
+
+void	almost_free(t_data *data);
 
 #endif

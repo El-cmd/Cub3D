@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:22 by schai             #+#    #+#             */
-/*   Updated: 2024/01/18 02:43:44 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:42:21 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int main(int ac, char **av)
 		return (1);
 	if (init_img(&data))
 		return (1);
-	put_minimap(&data);
+	routine(&data);
 	mlx_loop(data.mlx);
 	return (0);
 }

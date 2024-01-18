@@ -97,8 +97,22 @@ int put_minimap(t_data *data)
 	map_coord_x = WIN_WIDTH - MINIMAP;
 	map_coord_y = WIN_HEIGHT - MINIMAP;
 	mlx_put_image_to_window(data->mlx, data->win, data->minimap.fond_map.img, map_coord_x, map_coord_y);
-	do_tab_minimap(data);
-	do_minimap(data);
 	return (0);
+}
+
+void	almost_free(t_data *data)
+{
+	int i = 0;
+	int y = 0;
+	while (i < 11)
+	{
+		while (y < 11)
+		{
+			data->minimap.minimap[i][y] = '\0';
+			y++;
+		}
+		i++;
+		y = 0;
+	}
 }
 
