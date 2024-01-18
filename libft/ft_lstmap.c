@@ -3,31 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 18:17:09 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 16:58:14 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:35:02 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+	DESCRIPTION :
+	The function ft_lstmap creates a new list from a given list  by 
+	applying the function passed as parameter to the original list. If
+	the memory allocation fails for any node in the new list, the new list
+	will be deleted with the function passed as parameter and its memory
+	will be freed.
+
+	RETURN VALUE :
+	The new list containing the new values if a functon was provided.
+	A new copy of the list if no function was provided.
+	NULL if the memory allocation failed.
+*/
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*lstnew;
-	t_list	*start;
+	t_list	*newlst;
+	t_list	*node;
 
-	start = NULL;
+	if (!lst)
+		return (NULL);
+	newlst = NULL;
+	node = NULL;
 	while (lst)
 	{
-		lstnew = ft_lstnew((*f)(lst->content));
-		if (!lstnew)
+		if (!f)
+			node = ft_lstnew(lst->content);
+		else
+			node = ft_lstnew(f(lst->content));
+		if (!node)
 		{
-			ft_lstclear(&start, (*del));
-			return (0);
+			ft_lstclear(&newlst, del);
+			return (NULL);
 		}
-		ft_lstadd_back(&start, lstnew);
+		ft_lstadd_back(&newlst, node);
 		lst = lst->next;
 	}
-	return (start);
+	return (newlst);
 }

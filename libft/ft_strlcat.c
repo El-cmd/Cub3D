@@ -3,49 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 14:56:39 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 17:14:29 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:37:05 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 
-static char	ft_strncat(char *dst, char *src, size_t nb)
+
+/*
+	DESCRIPTION :
+	The function ft_strlcat appends the given string src to the end of 
+	dst. It will append at most dstsize - ft_strlen(dst) - 1 and 
+	nul-terminate the result.
+
+	Note : space for the terminating \0 character must be included in dstsize.
+
+	RETURN VALUE :
+	The total length of the string that it tried to create : the initial
+	length of dst + the length of src, with the goal to facilitate
+	truncaction detection.
+*/
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	j;
+	size_t	d_size;
+	size_t	s_size;
 
-	i = 0;
+	d_size = ft_strlen(dst);
+	s_size = ft_strlen(src);
+	if (dstsize <= d_size)
+		return (dstsize + s_size);
+	i = d_size;
 	j = 0;
-	while (dst[i])
-		i++;
-	while (src[j] && j < nb)
+	while ((i + j) < (dstsize - 1) && src[j] != '\0')
 	{
 		dst[i + j] = src[j];
 		j++;
 	}
 	dst[i + j] = '\0';
-	return (*dst);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	len_dst;
-	size_t	len_src;
-
-	len_dst = ft_strlen(dst);
-	len_src = ft_strlen((char *)src);
-	if (len_dst >= dstsize)
-		return (dstsize + len_src);
-	if (len_src < dstsize - len_dst)
-		ft_strncat(dst, (char *)src, len_src + 1);
-	else
-	{
-		ft_strncat(dst, (char *)src, dstsize - len_dst - 1);
-		dst[dstsize - 1] = '\0';
-	}
-	return (len_dst + len_src);
+	return (d_size + s_size);
 }

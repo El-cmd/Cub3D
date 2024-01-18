@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 13:57:07 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/10 14:04:23 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:35:20 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
+
+/*
+	DESCRIPTION :
+	The function ft_putchar_fd writes the given character to the given
+	file descriptor.
+
+	RETURN VALUE :
+	None.
+*/
 
 void	ft_putchar_fd(char c, int fd)
 {

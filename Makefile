@@ -6,7 +6,7 @@
 #    By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2023/12/23 14:49:21 by eldoctor         ###   ########.fr        #
+#    Updated: 2024/01/17 22:32:59 by eldoctor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,21 @@ CC      = clang
 FLAGS   = -Wall -Wextra -Werror 
 DIR_INC = -I ./includes/
 
-SRCS 	:= 	cub3D.c \
-			main_parse.c \
-			key_funct.c \
-			square.c \
-			init_image.c \
-			hakai.c \
+SRCS 	:= 	main.c \
+			init_data.c \
+			check_args.c \
+			create_map.c \
+			free.c \
+			parse_data.c \
 			utils.c \
-			gnl.c \
-			parse.c \
-			
+			get_file_data.c \
+			get_color_textures.c \
+			check_map.c \
+			check_textures.c \
+			init_mlx.c \
+			minimap.c
 
-DIR_SRCS 	= ./srcs
+DIR_SRCS 	= ./src
 
 DIR_OBJ 	= obj
 

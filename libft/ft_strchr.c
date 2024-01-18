@@ -3,29 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 15:54:13 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 17:12:25 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:36:54 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+
+/*
+	DESCRIPTION :
+	The function ft_strchr finds the first occurence of character c in
+	string str.
+
+	RETURN VALUE :
+	A pointer to the first occurence of c in str.
+	NULL if c is not found.
+*/
+
+char	*ft_strchr(const char *str, int c)
 {
-	int	i;
-	int	j;
+	int				i;
+	unsigned char	ch;
 
 	i = 0;
-	j = ft_strlen(s);
-	if (c == '\0')
-		return ((char *)&s[j]);
-	while (s[i])
+	ch = c;
+	if (ch == '\0')
 	{
-		if (s[i] == c)
-			return ((char *)&s[i]);
+		i = ft_strlen(str);
+		return ((char *)str + i++);
+	}
+	while (str[i])
+	{
+		if (str[i] == ch)
+			return ((char *)str + i);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

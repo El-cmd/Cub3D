@@ -3,23 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 16:26:01 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/23 14:21:11 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:34:47 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+	DESCRIPTION :
+	The function ft_lstadd_back adds a new node to the back of a list:
+		[.]->[.]->[.]->[NEW]->[NULL]
+
+	RETURN VALUE :
+	None.
+*/
+
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	if (*alst)
+	t_list	*tmp;
+
+	if (!new)
+		return ;
+	if (!*alst)
 	{
-		while ((*alst)->next)
-			*alst = (*alst)->next;
-		(*alst)->next = new;
-	}
-	else
 		*alst = new;
+		return ;
+	}
+	tmp = ft_lstlast(*alst);
+	tmp->next = new;
 }

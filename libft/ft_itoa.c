@@ -3,58 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 15:25:10 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 16:56:30 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:34:44 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_size(long nb)
-{
-	int		size;
+/*
+	DESCRIPTION :
+	The function ft_itoa converts the integer n into a string of characters.
 
-	size = 1;
-	if (nb < 0)
+	RESULT VALUE :
+	The string of the converted integer.
+*/
+
+static size_t	ft_itoa_len(long num)
+{
+	size_t	len;
+
+	len = 0;
+	if (num == 0)
+		return (1);
+	if (num < 0)
 	{
-		nb = -nb;
-		size += 1;
+		len++;
+		num = -num;
 	}
-	while (nb >= 10)
+	while (num >= 1)
 	{
-		size++;
-		nb = nb / 10;
+		len++;
+		num /= 10;
 	}
-	return (size);
+	return (len);
+}
+
+static char	*ft_num_to_str(long num, char *str, size_t len)
+{
+	str = ft_calloc(len + 1, sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	if (num < 0)
+	{
+		str[0] = '-';
+		num = -num;
+	}
+	len--;
+	while (len)
+	{
+		str[len] = (num % 10) + '0';
+		num /= 10;
+		len--;
+	}
+	if (str[0] != '-')
+		str[0] = (num % 10) + '0';
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	char			*str;
-	int				i;
-	int				size;
-	unsigned int	nb;
+	long	num;
+	size_t	len;
+	char	*str;
 
-	size = ft_size(n);
-	str = (char *)malloc(sizeof(char) * (size + 1));
+	num = n;
+	len = ft_itoa_len(num);
+	str = 0;
+	str = ft_num_to_str(num, str, len);
 	if (!str)
 		return (NULL);
-	if (n < 0)
-		nb = -n;
-	else
-		nb = n;
-	i = size - 1;
-	while (nb >= 10)
-	{
-		str[i] = nb % 10 + 48;
-		nb /= 10;
-		i--;
-	}
-	if (n < 0)
-		str[0] = '-';
-	str[i] = nb % 10 + 48;
-	str[size] = '\0';
 	return (str);
 }

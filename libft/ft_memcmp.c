@@ -3,29 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 10:32:36 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/09 15:00:16 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:35:12 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
+
+/*
+	DESCRIPTION :
+	The function ft_memcmp compares the first n bytes of the memory areas
+	s1 and s2. The bytes are interpreted as unsigned char.
+
+	RETURN VALUE :
+	An integer less than, equal to, or greater than zero if the first
+	n bytes of s1 is found to be less than, equal to, or greater than the 
+	first n bytes of s2. Zero if n is equal to zero.
+*/
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t				i;
-	const unsigned char	*ss1;
-	const unsigned char	*ss2;
+	const char	*str1;
+	const char	*str2;
+	size_t		i;
 
+	if (n == 0)
+		return (0);
+	str1 = (const char *)s1;
+	str2 = (const char *)s2;
 	i = 0;
-	ss1 = s1;
-	ss2 = s2;
-	while (i < n)
-	{
-		if (ss1[i] != ss2[i])
-			return (ss1[i] - ss2[i]);
+	while ((i < n - 1) && str1[i] == str2[i])
 		i++;
-	}
-	return (0);
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }

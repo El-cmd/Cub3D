@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 18:31:44 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 17:16:35 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:37:15 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
+
+
+/*
+	DESCRIPTION :
+	The function ft_strncmp compares the first n bytes of the given strings
+	s1 and s2.
+
+	RETURN VALUE :
+	An integer less than, equal to, or greater than zero if one of the first
+	n bytes of s1 is found to be less than, to match, or to be greater than 
+	s2.
+*/
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -19,11 +31,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	i = 0;
 	if (n == 0)
 		return (0);
-	while ((s1[i] || s2[i]) && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	while ((s1[i] != '\0' && s2[i] != '\0')
+		&& (i < n - 1) && s1[i] == s2[i])
 		i++;
-	}
-	return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

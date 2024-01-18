@@ -3,35 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 15:46:12 by alilin            #+#    #+#             */
-/*   Updated: 2019/10/24 14:16:03 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:34:03 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+/*
+	DESCRIPTION :
+	The function ft_atoi converts a string into an int.
+
+	RETURN VALUE :
+	The converted int.
+*/
+
 int	ft_atoi(const char *str)
 {
-	int	n;
+	int	num;
+	int	isneg;
 	int	i;
-	int	signe;
 
-	n = 0;
+	num = 0;
+	isneg = 1;
 	i = 0;
-	signe = 1;
-	while (str[i] && (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' '))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\v' || str[i] == '\f'))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			signe = signe * -1;
+		isneg *= -1;
 		i++;
 	}
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	while (ft_isdigit(str[i]))
 	{
-		n = n * 10 + (str[i] - '0');
+		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	return (n * signe);
+	return (num * isneg);
 }

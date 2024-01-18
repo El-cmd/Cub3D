@@ -3,29 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 16:28:16 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 17:18:51 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:37:19 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
-{
-	int	l;
-	int	i;
 
-	l = ft_strlen(s) - 1;
-	i = ft_strlen(s);
-	if (c == '\0')
-		return ((char *)&s[i]);
-	while (l >= 0)
+/*
+	DESCRIPTION :
+	The function ft_strrchr finds the last occurrence of character c in
+	string str.
+
+	RETURN VALUE :
+	A pointer to the last occurrence of c in str.
+	NULL if c is not found.
+*/
+
+char	*ft_strrchr(const char *str, int c)
+{
+	char			*p;
+	unsigned char	ch;
+	size_t			offset;
+
+	ch = c;
+	offset = ft_strlen(str);
+	p = (char *)str + offset;
+	if (ch == '\0')
+		return (p++);
+	while (p >= str)
 	{
-		if (s[l] == c)
-			return ((char *)&s[l]);
-		l--;
+		if (*p == ch)
+			return (p);
+		p--;
 	}
-	return (0);
+	p = NULL;
+	return (p);
 }

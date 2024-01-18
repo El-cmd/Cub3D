@@ -3,82 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alilin <alilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/28 15:41:53 by alilin            #+#    #+#             */
-/*   Updated: 2023/07/27 17:20:05 by alilin           ###   ########.fr       */
+/*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
+/*   Updated: 2024/01/02 13:37:21 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-static int	ft_start_nbset(char const *s1, char const *set)
+
+/*
+	DESCRIPTION :
+	The function ft_strtrim removes any characters of the given set from
+	the beginning and end of the given string s1, and allocates sufficient
+	memory to store the trimmed copy of the string.
+
+	RETURN VALUE :
+	A pointer to the trimmed copy of the string.
+	NULL if the memory allocation fails.
+*/
+
+static int	is_set(char c, char const *set)
 {
-	int		i;
-	int		j;
-	int		nbset;
+	int	i;
 
-	nbset = 0;
 	i = 0;
-	while (s1[i] && set[j] != '\0')
+	while (set[i])
 	{
-		j = 0;
-		while (s1[i] != set[j] && set[j])
-			j++;
-		if (s1[i] == set[j])
-			nbset++;
+		if (set[i] == c)
+			return (1);
 		i++;
 	}
-	return (nbset);
-}
-
-static int	ft_end_nbset(char const *s1, char const *set)
-{
-	int		i;
-	int		j;
-	int		nbset;
-
-	i = ft_strlen(s1) - 1;
-	j = 0;
-	nbset = 0;
-	while (i > 0 && set[j])
-	{
-		j = 0;
-		while (s1[i] != set[j] && set[j])
-			j++;
-		if (s1[i] == set[j])
-			nbset++;
-		i--;
-	}
-	return (nbset);
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		size;
-	int		start;
-	int		end;
-	char	*str;
-	int		i;
+	size_t	start;
+	size_t	end;
 
 	if (!s1)
-		return (NULL);
-	start = ft_start_nbset(s1, set);
-	if (ft_strlen(s1) == (size_t)start)
-		return (str = (char *)ft_calloc(1, sizeof(char)));
-	end = ft_end_nbset(s1, set);
-	size = ft_strlen(s1) - (start + end);
-	str = (char *)malloc((sizeof(char) * (size + 1)));
-	if (!str)
-		return (0);
-	i = 0;
-	while ((unsigned long)start < (ft_strlen(s1) - end))
-	{
-		str[i] = s1[start];
-		i++;
+		return (ft_strdup(""));
+	if (!set)
+		return (ft_strdup(s1));
+	start = 0;
+	end = ft_strlen(s1);
+	while (is_set(s1[start], set))
 		start++;
-	}
-	str[i] = '\0';
-	return (str);
+	if (start == end)
+		return (ft_strdup(""));
+	while (is_set(s1[end - 1], set))
+		end--;
+	return (ft_substr(s1, start, end - start));
 }
