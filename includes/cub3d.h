@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
-/*   Updated: 2024/01/18 14:17:41 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:30:00 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ typedef struct s_texturedata
 	char *east;    //texture des mure
 	int *floor;    // code rgb du plafond et mure
 	int *ceiling;  // code rgb du plafond et mure
-	unsigned long	hex_floor; //le code hexa de la couleur du sol
-	unsigned long	hex_ceiling;  //le code hexa de la couleur du ciel
+	int	hex_floor; //le code hexa de la couleur du sol
+	int	hex_ceiling;  //le code hexa de la couleur du ciel
 	int				size;
 	int				index;
 	double			step;
@@ -197,5 +197,7 @@ void do_minimap(t_data *data);
 void do_tab_minimap(t_data *data);
 
 void	almost_free(t_data *data);
+
+void floor_ceiling(t_data *data);
 
 #endif

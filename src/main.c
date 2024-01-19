@@ -6,7 +6,7 @@
 /*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:22 by schai             #+#    #+#             */
-/*   Updated: 2024/01/18 14:42:21 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:18:17 by eldoctor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ static int parse_args(t_data *data, char **av)
 	 	return (free_data(data)); // free les data en cas d'erreur
 	if (check_map(data, data->map) == FAILURE) // parse les eventuels erreurs de la map et prends la position du perso
 		return (free_data(data));
-	//if (check_textures(&data->texturedata) == FAILURE) // check la validité des texture et convertie le rgb en hexa
-	//	return (free_data(data));
+	if (check_textures(&data->texturedata) == FAILURE) // check la validité des texture et convertie le rgb en hexa
+		return (free_data(data));
 	print_info_map(data); // print les info de la map
 	return (0);
 }

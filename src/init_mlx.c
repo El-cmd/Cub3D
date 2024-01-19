@@ -11,6 +11,7 @@ int init_img(t_data *data)
 	&data->minimap.perso_mini.width, &data->minimap.perso_mini.height);
 	if (data->minimap.fond_map.img == NULL || data->minimap.wall.img == NULL || data->minimap.perso_mini.img == NULL)
 		return (error_msg("Minimap", MINIMAP_SPRITE, 1));
+	floor_ceiling(data);
 	return (0);
 }
 

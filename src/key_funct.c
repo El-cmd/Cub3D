@@ -45,7 +45,7 @@ int	key_funct(int code, t_data *data)
 {
 	if (code == LEFT || code == RIGHT || code == UP || code == DOWN)
 		move_p(code, data);
-	put_img(data);
+	//put_img(data);
 	return (0);
 }
 
@@ -54,6 +54,7 @@ int	put_img(t_data *data)
 	do_tab_minimap(data);
 	put_minimap(data);
 	do_minimap(data);
+	almost_free(data);
 	return (0);
 }
 
@@ -62,7 +63,7 @@ void routine(t_data *data)
 	mlx_key_hook(data->win, key_funct, data);
 	mlx_loop_hook(data->mlx, put_img, data);
 	mlx_hook(data->win, 2, 1L << 0, close_win, data);
-	//mlx_hook(data->win, 17, 1L << 0, close_win_cross, data); // eux option soit
+	mlx_hook(data->win, 17, 1L << 0, close_win_cross, data); // eux option soit
 }
 
 

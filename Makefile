@@ -6,7 +6,7 @@
 #    By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2024/01/18 12:52:44 by eldoctor         ###   ########.fr        #
+#    Updated: 2024/01/19 00:31:53 by eldoctor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS 	:= 	main.c \
 			check_textures.c \
 			init_mlx.c \
 			minimap.c \
-			key_funct.c
+			key_funct.c \
+			floor_ceiling.c
 
 DIR_SRCS 	= ./src
 
