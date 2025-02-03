@@ -6,19 +6,11 @@
 /*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
-/*   Updated: 2024/01/02 13:34:03 by schai            ###   ########.fr       */
+/*   Updated: 2024/01/22 12:07:25 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-	DESCRIPTION :
-	The function ft_atoi converts a string into an int.
-
-	RETURN VALUE :
-	The converted int.
-*/
 
 int	ft_atoi(const char *str)
 {

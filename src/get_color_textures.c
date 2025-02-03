@@ -6,12 +6,11 @@
 /*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:33:41 by schai             #+#    #+#             */
-/*   Updated: 2024/01/09 16:40:51 by schai            ###   ########.fr       */
+/*   Updated: 2024/01/22 12:23:39 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static bool	check_digit(char *str)
 {
@@ -28,7 +27,6 @@ static bool	check_digit(char *str)
 	}
 	return (state);
 }
-
 
 static int	*get_rgb(char **rgb_tab, int *rgb)
 {
@@ -49,9 +47,7 @@ static int	*get_rgb(char **rgb_tab, int *rgb)
 	return (rgb);
 }
 
-
-
-static int *set_rgb_colors(char *line)
+static int	*set_rgb_colors(char *line)
 {
 	char	**rgb_tab;
 	int		*rgb;
@@ -74,8 +70,6 @@ static int *set_rgb_colors(char *line)
 	}
 	return (get_rgb(rgb_tab, rgb));
 }
-
-
 
 int	get_rgb_texture(t_texturedata *textures, char *line, int j)
 {

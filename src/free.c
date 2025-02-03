@@ -6,12 +6,11 @@
 /*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:47:46 by schai             #+#    #+#             */
-/*   Updated: 2024/01/09 16:13:07 by schai            ###   ########.fr       */
+/*   Updated: 2024/01/22 12:38:40 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	free_tab(void **tab)
 {
@@ -56,9 +55,12 @@ static void	free_texturedata(t_texturedata *textures)
 		free(textures->ceiling);
 }
 
-
 int	free_data(t_data *data)
 {
+	if (data->texture_tab)
+		free_tab((void **)data->texture_tab);
+	if (data->texture_frame)
+		free_tab((void **)data->texture_frame);
 	free_texturedata(&data->texturedata);
 	free_map(data);
 	return (FAILURE);

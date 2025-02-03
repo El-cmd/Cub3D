@@ -1,118 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/02 12:57:22 by schai             #+#    #+#             */
+/*   Updated: 2024/01/23 13:46:37 by schai            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void do_tab_minimap(t_data *data)
+static bool	check_pos_minimap(int pos, int size)
 {
-	int a;
-	int b;
-	int c;
-	int d;
-
-
-	a = 0;
-	b = 0;
-	c = (int)data->playerdata.pos_y - 5;
-	d = (int)data->playerdata.pos_x - 5;
-	data->minimap.minimap[5][5] = 'N';
-	while (c < 0)
-	{
-		data->minimap.minimap[a][0] = '\0';
-		c++;
-		a++;
-	}
-	while (a < 11 && data->map[c])
-	{
-		b = 0;
-		d = (int)data->playerdata.pos_x - 5;
-		while (d < 0)
-		{
-			d++;
-			b++;
-		}
-		while (b < 11)
-		{
-			if (data->minimap.minimap[a][b] == 'N')
-			{
-				b++;
-				d++;
-			}
-			else
-			{
-				data->minimap.minimap[a][b] = data->map[c][d];
-				b++;
-				d++;
-			}
-		}
-		//data->minimap.minimap[a][b] = '\0';
-		a++;
-		c++;
-	}
+	if (pos < size)
+		return (true);
+	return (false);
 }
 
-void do_minimap(t_data *data)
+static char	*add_map_line(t_data *data, t_minimapdata *minimap, int y)
 {
-	int map_coord_x;
-	int map_coord_y;
-	int a = 0;
-	int b = 0;
+	char	*line;
+	int		x;
 
-	map_coord_x = WIN_WIDTH - MINIMAP + 2.5;
-	map_coord_y = WIN_HEIGHT - MINIMAP + 2.5;
-	while (a < 11 && data->minimap.minimap[a])
+	line = ft_calloc(minimap->size + 1, sizeof * line);
+	if (!line)
+		return (NULL);
+	x = 0;
+	while (x < minimap->size && x < data->mapdata.width)
 	{
-		while (b < 11)
-		{
-			if (data->minimap.minimap[a][b] == '1')
-			{
-				mlx_put_image_to_window(data->mlx, data->win, data->minimap.wall.img, map_coord_x, map_coord_y);
-				b++;
-				map_coord_x += 30;
-
-			}
-			else if (data->minimap.minimap[a][b] == 'N')
-			{
-				map_coord_x += 5;
-				mlx_put_image_to_window(data->mlx, data->win, data->minimap.perso_mini.img, map_coord_x, map_coord_y + 5);
-				map_coord_x += 25;
-				b++;
-			}
-			else
-			{
-				map_coord_x += 30;
-				b++;	
-			}
-
-		}
-		map_coord_x = WIN_WIDTH - MINIMAP + 2.5;
-		map_coord_y += 30;
-		a++;
-		b = 0;
+		if (!check_pos_minimap(y + minimap->y, data->mapdata.height)
+			|| !check_pos_minimap(x + minimap->x, data->mapdata.width))
+			line[x] = '\0';
+		else if ((int)data->playerdata.pos_x == (x + minimap->x)
+			&& (int)data->playerdata.pos_y == (y + minimap->y))
+			line[x] = 'P';
+		else if (data->map[y + minimap->y][x + minimap->x] == '1')
+			line[x] = '1';
+		else if (data->map[y + minimap->y][x + minimap->x] == '0')
+			line[x] = '0';
+		else
+			line[x] = '\0';
+		x++;
 	}
+	return (line);
 }
 
-int put_minimap(t_data *data)
+static char	**init_minimap_tab(t_data *data, t_minimapdata *minimap)
 {
-	int map_coord_x;
-	int map_coord_y;
+	char	**map;
+	int		y;
 
-	map_coord_x = WIN_WIDTH - MINIMAP;
-	map_coord_y = WIN_HEIGHT - MINIMAP;
-	mlx_put_image_to_window(data->mlx, data->win, data->minimap.fond_map.img, map_coord_x, map_coord_y);
+	map = ft_calloc(minimap->size + 1, sizeof * map);
+	if (!map)
+		return (NULL);
+	y = 0;
+	while (y < minimap->size && y < data->mapdata.height)
+	{
+		map[y] = add_map_line(data, minimap, y);
+		if (!map[y])
+		{
+			free_tab((void **)map);
+			return (NULL);
+		}
+		y++;
+	}
+	return (map);
+}
+
+static int	get_minimap_xy(t_minimapdata *minimap, int mapsize, int pos)
+{
+	if (pos > minimap->distance && mapsize - pos > minimap->distance + 1)
+		return (pos - minimap->distance);
+	if (pos > minimap->distance && mapsize - pos <= minimap->distance + 1)
+		return (mapsize - minimap->size);
 	return (0);
 }
 
-void	almost_free(t_data *data)
+void	start_minimap(t_data *data)
 {
-	int i = 0;
-	int y = 0;
-	while (i < 11)
-	{
-		while (y < 11)
-		{
-			data->minimap.minimap[i][y] = '\0';
-			y++;
-		}
-		i++;
-		y = 0;
-	}
-}
+	t_minimapdata	minimap;
 
+	minimap.map_tab = NULL;
+	minimap.img = &data->minimap;
+	minimap.distance = MINIMAP_DISTANCE;
+	minimap.size = (2 * minimap.distance) + 1;
+	minimap.square_size = MINIMAP_SQUARE / (2 * minimap.distance);
+	minimap.x = get_minimap_xy(&minimap, data->mapdata.width,
+			(int)data->playerdata.pos_x);
+	minimap.y = get_minimap_xy(&minimap, data->mapdata.height,
+			(int)data->playerdata.pos_y);
+	minimap.map_tab = init_minimap_tab(data, &minimap);
+	if (!minimap.map_tab)
+	{
+		error_msg(NULL, ERR_MALLOC, 0);
+		return ;
+	}
+	minimap_frame(data, &minimap);
+	free_tab((void **)minimap.map_tab);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:20:47 by schai             #+#    #+#             */
-/*   Updated: 2024/01/15 18:15:06 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:38:29 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,14 @@ static int	get_nb_of_lines(char *path)
 	return (line_count);
 }
 
-
-static void fill_file(int row, int column, int i, t_data *data)
+static void	fill_file(int row, int column, int i, t_data *data)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(data->mapdata.fd);
 	while (line != NULL)
 	{
-		data->mapdata.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char)); // malloc le deuxieme pointeur
+		data->mapdata.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->mapdata.file[row])
 		{
 			error_msg(NULL, ERR_MALLOC, 0);
@@ -61,29 +60,18 @@ static void fill_file(int row, int column, int i, t_data *data)
 	data->mapdata.file[row] = NULL;
 }
 
-void print_map2(t_data *data)
+void	parse_mapdata(char *path, t_data *data)
 {
-	int i = 0;
-
-	while (data->mapdata.file[i])
-	{
-		printf("%s", data->mapdata.file[i]);
-		i++;
-	}
-}
-
-void parse_mapdata(char *path, t_data *data)
-{
-	int	row;
-	int	i;
+	int		row;
+	int		i;
 	size_t	column;
 
 	i = 0;
 	row = 0;
 	column = 0;
-	data->mapdata.nb_line = get_nb_of_lines(path); // donne le nombre de ligne vertical
-	data->mapdata.path = path; // le path de la map
-	data->mapdata.file = ft_calloc(data->mapdata.nb_line + 1, sizeof(char *)); // malloc le premier pointeur
+	data->mapdata.nb_line = get_nb_of_lines(path);
+	data->mapdata.path = path;
+	data->mapdata.file = ft_calloc(data->mapdata.nb_line + 1, sizeof(char *));
 	if (!(data->mapdata.file))
 	{
 		error_msg(NULL, ERR_MALLOC, 0);
@@ -94,8 +82,7 @@ void parse_mapdata(char *path, t_data *data)
 		error_msg(path, strerror(errno), FAILURE);
 	else
 	{
-		fill_file(row, column, i, data); // malloc le ** et copie le gnl dans la copie
+		fill_file(row, column, i, data);
 		close(data->mapdata.fd);
 	}
-	//print_map2(data); // print la map
 }

@@ -12,12 +12,10 @@
 
 #include "cub3d.h"
 
-
-
-static int get_map_lines(t_data *data, char **file, int i)
+static int	get_map_lines(t_data *data, char **file, int i)
 {
-	int start;
-	int j;
+	int	start;
+	int	j;
 
 	start = i;
 	while (file[i])
@@ -27,13 +25,12 @@ static int get_map_lines(t_data *data, char **file, int i)
 		|| file[i][j] == '\v' || file[i][j] == '\f')
 			j++;
 		if (file[i][j] != '1')
-			break;
+			break ;
 		i++;
 	}
 	data->mapdata.index_end_of_map = i;
 	return (i - start);
 }
-
 
 static int	fill_map(t_mapdata *mapdata, char **map_tab, int index)
 {
@@ -62,20 +59,16 @@ static int	fill_map(t_mapdata *mapdata, char **map_tab, int index)
 	return (SUCCESS);
 }
 
-
-
-
-static int get_map(t_data *data, char **file, int i)
+static int	get_map(t_data *data, char **file, int i)
 {
 	data->mapdata.height = get_map_lines(data, file, i);
-	data->map = malloc(sizeof(char *) * (data->mapdata.height + 1)); // malloc le le premier char ** 
+	data->map = malloc(sizeof(char *) * (data->mapdata.height + 1));
 	if (!data->map)
 		return (error_msg(NULL, ERR_MALLOC, FAILURE));
-	if (fill_map(&data->mapdata, data->map, i) == FAILURE) // malloc le deuxieme et juste la map
+	if (fill_map(&data->mapdata, data->map, i) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
-
 
 static void	change_space_map(t_data *data)
 {
@@ -100,12 +93,18 @@ static void	change_space_map(t_data *data)
 	}
 }
 
-
-
-int create_map(t_data *data, char **file, int i)
+int	create_map(t_data *data, char **file, int i)
 {
-	if (get_map(data, file, i) == FAILURE) // separe la map du reste et la copie dans char map**
+	if (get_map(data, file, i) == FAILURE)
 		return (FAILURE);
-	change_space_map(data); // change les espace en mure
+	if (check_vertical(data, data->map))
+		return (FAILURE);
+	if (check_horizontal(data->map))
+		return (FAILURE);
+	if (check_last_char(data->map) == FAILURE)
+		return (FAILURE);
+	if (vertical_check(data, data->map) == FAILURE)
+		return (FAILURE);
+	change_space_map(data);
 	return (SUCCESS);
 }

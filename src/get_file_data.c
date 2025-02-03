@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:59:13 by schai             #+#    #+#             */
-/*   Updated: 2024/01/15 19:24:03 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:16:35 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static char	*get_texture_path(char *line, int j)
 {
@@ -41,8 +40,7 @@ static char	*get_texture_path(char *line, int j)
 	return (path);
 }
 
-
-static int get_wall_textures(t_texturedata *textures, char *line, int j)
+static int	get_wall_textures(t_texturedata *textures, char *line, int j)
 {
 	if (line[j + 2] && ft_isprint(line[j + 2]))
 		return (ERR);
@@ -59,8 +57,7 @@ static int get_wall_textures(t_texturedata *textures, char *line, int j)
 	return (SUCCESS);
 }
 
-
-static int mapdata_separation(t_data *data, char **map, int i, int j)
+static int	mapdata_separation(t_data *data, char **map, int i, int j)
 {
 	while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\n')
 		j++;
@@ -89,9 +86,7 @@ static int mapdata_separation(t_data *data, char **map, int i, int j)
 	return (CONTINUE);
 }
 
-
-
-int get_file_data(t_data *data, char **map)
+int	get_file_data(t_data *data, char **map)
 {
 	int	i;
 	int	j;
@@ -103,9 +98,9 @@ int get_file_data(t_data *data, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			state = mapdata_separation(data, map, i, j); 
+			state = mapdata_separation(data, map, i, j);
 			if (state == BREAK)
-				break;
+				break ;
 			else if (state == FAILURE)
 				return (FAILURE);
 			else if (state == SUCCESS)

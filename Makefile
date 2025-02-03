@@ -1,22 +1,21 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/25 17:47:30 by alilin            #+#    #+#              #
-#    Updated: 2024/01/19 00:31:53 by eldoctor         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME	= cub3D
 
-NAME    = cub3D
-RM      = rm      -rf
-CC      = clang
-FLAGS   = -Wall -Wextra -Werror 
-DIR_INC = -I ./includes/
 
-SRCS 	:= 	main.c \
+CC		= gcc
+CFLAGS	= -Werror -Wextra -Wall -g #-fsanitize=address
+
+MLX_PATH	= minilibx-linux/
+MLX_NAME	= libmlx.a
+MLX 		= $(MLX_PATH)$(MLX_NAME)
+
+
+LIBFT_PATH	= libft/
+LIBFT_NAME	= libft.a
+LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
+
+
+SRC_PATH = ./src/
+SRC		= 	main.c \
 			init_data.c \
 			check_args.c \
 			create_map.c \
@@ -28,38 +27,70 @@ SRCS 	:= 	main.c \
 			check_map.c \
 			check_textures.c \
 			init_mlx.c \
+			init_textures.c \
+			input.c	\
+			raycast.c \
+			texture.c \
+			move_player.c \
+			init_player.c \
+			dda.c \
+			frame.c \
+			rotate.c \
+			check_position.c \
+			check_walls.c \
 			minimap.c \
-			key_funct.c \
-			floor_ceiling.c
+			minimap_frame.c \
+			check_wall2.c
 
-DIR_SRCS 	= ./src
 
-DIR_OBJ 	= obj
 
-PATH_LIBFT = ./libft
-PATH_MLX = ./minilibx-linux
-DIR_INC += -I $(PATH_LIBFT)
+SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
-OBJS        := $(addprefix ${DIR_OBJ}/, ${SRCS:.c=.o})
 
-all: $(NAME)
+OBJ_PATH	= ./objects/
+OBJ			= $(SRC:.c=.o)
+OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 
-$(DIR_OBJ)/%.o:	$(DIR_SRCS)/%.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -D BUFFER_SIZE=10000 $(DIR_INC) -o $@ -c $< -g
+
+INC			=	-I ./includes/\
+				-I ./libft/\
+				-I ./minilibx-linux/
+
+
+all: $(OBJ_PATH) $(MLX) $(LIBFT) $(NAME)
+
+
+$(OBJ_PATH):
+	mkdir -p $(OBJ_PATH)
+
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
 
 $(NAME): $(OBJS)
-	make -C $(PATH_LIBFT)
-	make -C $(PATH_MLX)
-	@$(CC) $(FLAGS) $(DIR_INC) $(OBJS) -o $(NAME) -L $(PATH_LIBFT) -lft -lm -L $(PATH_MLX) -lXext -lmlx -lX11
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX) -lXext -lX11 -lm
+
+
+$(LIBFT):
+	make -sC $(LIBFT_PATH)
+
+$(MLX):
+	make -sC $(MLX_PATH)
+
 
 clean:
-	make -C $(PATH_MLX) clean
-	make -C $(PATH_LIBFT) clean
-	@$(RM) $(DIR_OBJ)
+	rm -rf $(OBJ_PATH)
+	make -C $(LIBFT_PATH) clean
+	make -C $(MLX_PATH) clean
 
-fclean:		clean
-	make -C $(PATH_LIBFT) fclean
-	@$(RM) $(NAME)
 
-re:	fclean all
+fclean: clean
+	rm -f $(NAME)
+	make -C $(LIBFT_PATH) fclean
+	make -C $(MLX_PATH) clean
+
+
+re: fclean all
+
+.PHONY: all re clean fclean bonus

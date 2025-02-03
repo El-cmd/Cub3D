@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:17:49 by schai             #+#    #+#             */
-/*   Updated: 2024/01/14 14:19:49 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:34:50 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-static bool check_is_dir(char *arg)
+static bool	check_is_dir(char *arg)
 {
 	int		fd;
 	bool	state;
@@ -28,10 +27,10 @@ static bool check_is_dir(char *arg)
 	return (state);
 }
 
-static bool check_extension(char *arg)
+static bool	check_extension(char *arg)
 {
-	size_t len;
-	
+	size_t	len;
+
 	len = ft_strlen(arg);
 	if ((arg[len - 3] != 'c' || arg[len - 2] != 'u'
 			|| arg[len - 1] != 'b'
@@ -40,8 +39,7 @@ static bool check_extension(char *arg)
 	return (true);
 }
 
-static bool	
-check_is_xpm(char *arg)
+static bool	check_is_xpm(char *arg)
 {
 	size_t	len;
 
@@ -53,11 +51,10 @@ check_is_xpm(char *arg)
 	return (true);
 }
 
-
-int check_file(char *arg, bool state)
+int	check_file(char *arg, bool state)
 {
-	int fd;
-	
+	int	fd;
+
 	if (check_is_dir(arg))
 		return (error_msg(arg, FILE_DIR, FAILURE));
 	fd = open(arg, O_RDONLY);

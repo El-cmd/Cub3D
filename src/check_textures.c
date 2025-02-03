@@ -3,45 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eldoctor <eldoctor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:17:49 by schai             #+#    #+#             */
-/*   Updated: 2024/01/22 09:53:22 by eldoctor         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:37:25 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int check_rgb(int *rgb)
+static int	check_rgb(int *rgb)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < 3)
-    {
-        if (rgb[i] < 0 || rgb[i] > 255)
-            return (error_msg(NULL, INV_RGB, FAILURE));
-        i++;
-    }
-    return (SUCCESS);
+	i = 0;
+	while (i < 3)
+	{
+		if (rgb[i] < 0 || rgb[i] > 255)
+			return (error_msg(NULL, INV_RGB, FAILURE));
+		i++;
+	}
+	return (SUCCESS);
 }
 
-
-static int convert_rgb_to_hex(int *rgb)
+static unsigned long	convert_rgb_to_hex(int *rgb)
 {
-    int hex_result;
-    int r;
-    int g;
-    int b;
+	unsigned long	hex_result;
+	int				r;
+	int				g;
+	int				b;
 
-    r = rgb[0];
-    g = rgb[1];
-    b = rgb[2];
-    hex_result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-    return (hex_result);
+	r = rgb[0];
+	g = rgb[1];
+	b = rgb[2];
+	hex_result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	return (hex_result);
 }
 
-int check_textures(t_texturedata *textures)
+int	check_textures(t_texturedata *textures)
 {
 	if (!textures->north || !textures->south || !textures->west
 		|| !textures->east)
@@ -55,7 +54,7 @@ int check_textures(t_texturedata *textures)
 		|| check_rgb(textures->floor) == FAILURE
 		|| check_rgb(textures->ceiling) == FAILURE)
 		return (FAILURE);
-    textures->hex_ceiling = convert_rgb_to_hex(textures->ceiling);
-    textures->hex_floor =  convert_rgb_to_hex(textures->floor);
-    return (SUCCESS);
+	textures->hex_ceiling = convert_rgb_to_hex(textures->ceiling);
+	textures->hex_floor = convert_rgb_to_hex(textures->floor);
+	return (SUCCESS);
 }

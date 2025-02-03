@@ -6,19 +6,12 @@
 /*   By: schai <schai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:57:20 by schai             #+#    #+#             */
-/*   Updated: 2024/01/02 13:34:37 by schai            ###   ########.fr       */
+/*   Updated: 2024/01/22 12:07:44 by schai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-	DESCRIPTION :
-	The function ft_ishexdigit checks whether c is a hexadecimal
-	digit character or not.
 
-	RETURN VALUE:
-	Non-zero if c is a hexadecimal digit, zero if not.
-*/
 int	ft_ishexdigit(int c)
 {
 	if (c >= '0' && c <= '9')

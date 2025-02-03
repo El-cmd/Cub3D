@@ -12,43 +12,6 @@
 
 #include "cub3d.h"
 
-static int	check_wall(char **map_tab, int i, int j)
-{
-	if (!map_tab || !map_tab[i] || !map_tab[i][j])
-		return (FAILURE);
-	while (map_tab[i][j] == ' ' || map_tab[i][j] == '\t'
-	|| map_tab[i][j] == '\r' || map_tab[i][j] == '\v'
-	|| map_tab[i][j] == '\f')
-		j++;
-	while (map_tab[i][j])
-	{
-		if (map_tab[i][j] != '1')
-			return (FAILURE);
-		j++;
-	}
-	return (SUCCESS);
-}
-
-int	check_map_walls(t_mapdata *mapdata, char **map_tab)
-{
-	int	i;
-	int	j;
-
-	if (check_wall(map_tab, 0, 0) == FAILURE)
-		return (FAILURE);
-	i = 1;
-	while (i < (mapdata->height - 1))
-	{
-		j = ft_strlen(map_tab[i]) - 1;
-		if (map_tab[i][j] != '1')
-			return (FAILURE);
-		i++;
-	}
-	if (check_wall(map_tab, i, 0) == FAILURE)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
 int	check_map_elem(t_data *data, char **map_tab)
 {
 	int	i;
@@ -78,7 +41,6 @@ int	check_map_elem(t_data *data, char **map_tab)
 	return (SUCCESS);
 }
 
-
 int	check_position(t_data *data, char **map_tab)
 {
 	int	i;
@@ -95,7 +57,6 @@ int	check_position(t_data *data, char **map_tab)
 		return (FAILURE);
 	return (SUCCESS);
 }
-
 
 int	check_player_pos(t_data *data, char **map_tab)
 {
@@ -125,10 +86,6 @@ int	check_player_pos(t_data *data, char **map_tab)
 	return (SUCCESS);
 }
 
-
-
-
-
 int	check_map_is_at_the_end(t_mapdata *map)
 {
 	int	i;
@@ -151,21 +108,19 @@ int	check_map_is_at_the_end(t_mapdata *map)
 	return (SUCCESS);
 }
 
-
-
-int check_map(t_data *data, char **map_tab)
+int	check_map(t_data *data, char **map_tab)
 {
 	if (!data->map)
 		return (error_msg(NULL, MAP_MISSING, FAILURE));
-	if (check_map_walls(&data->mapdata, map_tab) == FAILURE) // check si la carte est bien entoure de mures
-		return (error_msg(NULL, MAP_NO_WALLS, FAILURE));
-	if (data->mapdata.height < 3) // la map est trop petite
+	if (data->mapdata.height < 3)
 		return (error_msg(NULL, MAP_TOO_SMALL, FAILURE));
-	if (check_map_elem(data, map_tab) == FAILURE) // regarde si il y a bien un perso et verifie quil y en pas deux aussi que ca soit un caractere valide
+	if (check_map_walls(&data->mapdata, map_tab) == FAILURE)
+		return (error_msg(NULL, MAP_NO_WALLS, FAILURE));
+	if (check_map_elem(data, map_tab) == FAILURE)
 		return (FAILURE);
-	if (check_player_pos(data, map_tab) == FAILURE) // regarde la position du player et le cast en double
+	if (check_player_pos(data, map_tab) == FAILURE)
 		return (FAILURE);
-	if (check_map_is_at_the_end(&data->mapdata) == FAILURE) // check si la fin de la map est bien un ligne que de whitespace
+	if (check_map_is_at_the_end(&data->mapdata) == FAILURE)
 		return (error_msg(NULL, MAP_LAST_ELEM, FAILURE));
 	return (SUCCESS);
 }
